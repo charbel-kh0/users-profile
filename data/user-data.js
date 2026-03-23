@@ -47,11 +47,6 @@ async function updateUser(userId, newData) {
 
 async function searchUser(username) {
 
-  // const foundUser = await dbCollection().findOne(
-  //   { username: username });
-
-  // return foundUser;
-
   return await dbCollection()
   .find({ username: { $regex: username, $options: 'i' } })
   .toArray();

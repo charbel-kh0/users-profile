@@ -94,7 +94,6 @@ header {
   gap: 1rem;
 }
 
-/* Profile Card */
 .profile-card {
   background: white;
   width: 350px;
@@ -109,7 +108,6 @@ header {
   transform: translateY(-5px);
 }
 
-/* Profile Image */
 .profile-img {
   width: 120px;
   height: 120px;
@@ -119,21 +117,19 @@ header {
   border: 4px solid rgb(75, 179, 75);
 }
 
-/* Name */
 .profile-name {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Username */
 .profile-username {
   color: gray;
   font-size: 14px;
   margin-bottom: 15px;
 }
 
-/* Bio */
+
 .profile-bio {
   font-size: 14px;
   color: #555;
@@ -160,7 +156,6 @@ header {
   color: gray;
 }
 
-/* Button */
 .profile-btn {
   display: inline-block;
   padding: 10px 20px;

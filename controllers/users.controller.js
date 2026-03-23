@@ -1,27 +1,8 @@
-const express = require("express");
-const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
+// const data = require("../data/user-data");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-
-const upload = multer({ storage: storage });
-
-// const user = require('../controllers/users.controller');
-
-const { addUser, getUsers, getUser, deleteUser, updateUser, searchUser, dbCollection } = require("../data/user-data");
-
-const router = express.Router();
-
-router.get("/", async (req, res) => {
+async function getUsers(req, res) {
   try {
-    const users = await getUsers();
+    const users = await data.getUsers();
 
     const sortOption = req.query.sort;
 
@@ -41,28 +22,28 @@ router.get("/", async (req, res) => {
     console.error(error);
     res.status(500).send("Something went wrong");
   }
-});
+}
 
-router.delete("/delete/:id", async (req, res) => {
+async function deleteUser(req, res) {
   const userId = req.params.id;
 
-  await deleteUser(userId);
+  await data.deleteUser(userId);
 
   res.redirect('/');
-});
+}
 
-router.get("/update/:id", async (req, res) => {
+async function getAUser(req, res) {
   const userId = req.params.id;
 
-  const user = await getUser(userId);
+  const user = await data.getUser(userId);
 
   res.render('update-user', { user });
-});
+}
 
-router.put("/update/:id", upload.single('image'), async (req, res) => {
+async function updateAUser(req, res) {
   const userId = req.params.id;
 
-  const existingUser = await getUser(userId);
+  const existingUser = await data.getUser(userId);
 
   const newData =  {
     name: req.body.name,
@@ -71,25 +52,24 @@ router.put("/update/:id", upload.single('image'), async (req, res) => {
     image: req.file ? req.file.path : existingUser.image
   }
 
-  await updateUser(userId, newData);
+  await data.updateUser(userId, newData);
 
   res.redirect('/');
-});
+}
 
-router.get("/info/:id", async (req, res) => {
+async function getUserInfo(req, res) {
   const userId = req.params.id;
 
-  const user = await getUser(userId);
+  const user = await data.getUser(userId);
 
   res.render("user-info", { user });
-});
+}
 
-router.get("/add-user", (req, res) => {
+async function getAddUser(req, res) {
   res.render("add-user");
-});
+}
 
-
-router.post("/add-user", upload.single('image'), async (req, res) => {
+async function addUser(req, res) {
   try {
     const user = {
       name: req.body.name,
@@ -98,25 +78,24 @@ router.post("/add-user", upload.single('image'), async (req, res) => {
       image: req.file ? req.file.path : null
     };
 
-    await addUser(user);
+    await data.addUser(user);
     res.redirect("/");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error adding user");
   }
-});
+}
 
-
-router.get("/search", async (req, res) => {
+async function searchUser(req, res) {
   try {
     const username = req.query.search;
 
       let users = [];
 
       if (username) {
-        users = await searchUser(username);
+        users = await data.searchUser(username);
       } else {
-        users = await getUsers();
+        users = await data.getUsers();
       }
 
       res.render("users-page", { users, username });
@@ -124,7 +103,9 @@ router.get("/search", async (req, res) => {
     console.error(error);
     res.status(500).send("Search failed");
   }
-});
+}
 
-
-module.exports = router;
+module.exports = {
+  getUsers, deleteUser, getAUser, updateAUser, 
+  getUserInfo, getAddUser, addUser, searchUser
+}
