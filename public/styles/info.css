@@ -1,0 +1,20 @@
+#info-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+#update-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#update-items {
+  display: flex;
+  flex-direction: column;
+}

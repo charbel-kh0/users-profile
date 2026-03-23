@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  width: 35rem;
+  height: 10rem;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+#user-img {
+  flex: 0.5;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgb(75, 179, 75);
+}
+
+#user-item div {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  /* align-items: center; */
+  text-align: left;
+  padding-left: 2rem;
+  gap: 1rem;
+}
+
+#user-name {
+  flex: 1.5;
+}
+
+#user-bio {
+  flex: 1.5;
+}
+
+#user-btn {
+  /* flex: 0.5; */
+  margin-left: 3rem;
+  display: inline-block;
+  padding: 6px 10px;
+  font-size: small;
+  background: rgb(75, 179, 75);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.3s; 
+  width: 8rem;
+}
+
+#user-btn:hover {
+  background-color: darkblue;
+}
+/* 7et flex lal div taba3on */
+#delete-user,
+#update-user {
+  /* flex: 0.5; */
+  margin-left: 3rem;
+  display: inline-block;
+  padding: 6px 10px;
+  font-size: small;
+  background: rgb(75, 179, 75);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.3s; 
+  width: 8rem;
+}
+
+#update-user:hover {
+  background-color: darkgreen;
+}
+
+#delete-user:hover {
+  background-color: darkred;
+}
+
+#sort-container {
+  color: rgb(65, 65, 65);
+  flex: 0 0 100%;      
+  display: flex;       
+  justify-content: center;
+  text-align: center;
+}
+
+#sort-btn {
+  border: none;
+  padding: 0.2rem;
+  border-radius: 0.4rem;
+}
+
+#sort-btn:hover {
+  background-color: rgba(75, 179, 75, 0.332);
+  color:  white;
+}

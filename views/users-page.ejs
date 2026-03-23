@@ -1,0 +1,87 @@
+<%- include('shared/includes/head') %>
+</head>
+<body>
+  <header>
+    <h1 id="page-title">Profile tracker</h1>
+
+    <div>
+      <a href="/add-user" id="add-user-btn">Add user</a>
+      <button id="show-users-btn">Show/Hide Users</button>
+    </div>
+   
+    <div>
+      <form action="/search" method="GET">
+        <input type="text" name="search" id="search-input">
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+    </div>
+  </header>
+
+  <% if (typeof username !== 'undefined' && username) { %>
+    <h2 id="search-lable">Search results for "<%= username %>"</h2>
+  
+    <div id="search-result-container">
+    <% if (users && users.length > 0) { %>
+    <ul id="search-results">
+      <% users.forEach(user => { %>
+        <li id="user-item">
+          <img src="<%= user.image %>" id="user-img" />
+          
+          <div>
+            <h2 id="user-name"><%= user.name %></h2>
+            <p id="user-bio"><%= user.username %></p>
+          </div>
+
+          <div>
+            <a href="/info/<%= user._id %>" id="user-btn">View Details</a>
+            <a href="/update/<%= user._id %>" id="update-user">Update User</a>
+            <form action="/delete/<%= user._id %>?_method=DELETE" method="POST">
+              <button type="submit" id="delete-user">Delete User</button>
+            </form>
+          </div>
+        </li>
+        <br>
+      <% }); %>
+    </ul>
+    </div>
+  <% } else { %>
+    <p>No users found.</p>
+  <% } %>
+<% } else { %>
+
+  <ul id="profile-list">
+
+    <div id="sort-container">
+      <form action="/" method="GET">
+        <label for="sort-select">Sort by:</label>
+        <select name="sort" id="sort-select">
+          <option value="name-asc">Name ↑</option>
+          <option value="name-desc">Name ↓</option>
+        </select>
+        <button type="submit" id="sort-btn">Sort</button>
+      </form>
+    </div>
+   
+
+    <% users.forEach(user => { %>
+      <li id="user-item">
+        <img src="<%= user.image %>" id="user-img" />
+        
+        <div>
+          <h2 id="user-name"><%= user.name %></h2>
+          <p id="user-bio"><%= user.username %></p>
+        </div>
+
+        <div>
+          <a href="/info/<%= user._id %>" id="user-btn">View Details</a>
+          <a href="/update/<%= user._id %>" id="update-user">Update User</a>
+          <form action="/delete/<%= user._id %>?_method=DELETE" method="POST">
+            <button type="submit" id="delete-user">Delete User</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+    <% } %>
+    </ul>
+</body>
+</html>

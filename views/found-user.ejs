@@ -1,0 +1,70 @@
+<%- include('shared/includes/head') %>
+</head>
+<body>
+  <header>
+    <h1 id="page-title">Profile tracker</h1>
+
+    <div>
+      <a href="/add-user" id="add-user-btn">Add user</a>
+      <button id="show-users-btn">Show Users</button>
+    </div>
+   
+    <div>
+      <form action="/search" method="GET">
+        <input type="text" name="search" id="search-input">
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+    </div>
+  </header>
+<% if (typeof username !== 'undefined' && username) { %>
+  <% if (username) { %>
+  <h2>Search results for "<%= username %>"</h2>
+  <% if (foundUser) { %>
+    <li id="user-item">
+      <img src="<%= foundUser.image %>" id="user-img" />
+      
+      <div>
+        <h2 id="user-name"><%= foundUser.name %></h2>
+        <p id="user-bio"><%= foundUser.username %></p>
+      </div>
+
+      <div>
+        <a href="/info/<%= foundUser._id %>" id="user-btn">View Details</a>
+        <a href="/update/<%= foundUser._id %>" id="update-user">Update User</a>
+        <form action="/delete/<%= foundUser._id %>?_method=DELETE" method="POST">
+          <button type="submit" id="delete-user">Delete User</button>
+        </form>
+      </div>
+    </li>
+  <% } else { %>
+    <p>No user found with that name.</p>
+  <% } %>
+<% } %>
+<% } %>
+
+  <ul id="profile-list">
+    <% if (Array.isArray(users)) { %>
+    <% users.forEach(user => { %>
+      <li id="user-item">
+        <img src="<%= user.image %>" id="user-img" />
+        
+        <div>
+          <h2 id="user-name"><%= user.name %></h2>
+          <p id="user-bio"><%= user.username %></p>
+        </div>
+
+        <div>
+          <a href="/info/<%= user._id %>" id="user-btn">View Details</a>
+          <a href="/update/<%= user._id %>" id="update-user">Update User</a>
+          <form action="/delete/<%= user._id %>?_method=DELETE" method="POST">
+            <button type="submit" id="delete-user">Delete User</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+    <% } else { %>
+      <li>No users found</li>
+    <% } %>
+    </ul>
+</body>
+</html>

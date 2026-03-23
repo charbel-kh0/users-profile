@@ -1,0 +1,22 @@
+<%- include('shared/includes/head') %>
+</head>
+<body id="update-body">
+  <form action="/update/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="profile-card" id="update-items">
+      <label for="name">Full Name</label>
+      <input type="text" id="new-name" name="name" value="<%= user.name %>" required><br>
+
+      <label for="username">Username</label>
+      <input type="text" id="new-username" name="username" value="<%= user.username %>" required><br>
+
+      <label for="bio">Bio</label>
+      <textarea id="bio" name="bio" placeholder="Write a short bio..." rows="3" required><%= user.bio %></textarea><br>
+
+      <label for="image">Profile Image</label>
+      <input type="file" id="new-image" name="image" accept="image/*"><br>
+
+      <button type="submit" class="profile-btn">Update</button>
+    </div>
+  </form>
+</body>
+</html>

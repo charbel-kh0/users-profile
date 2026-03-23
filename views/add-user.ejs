@@ -1,0 +1,24 @@
+<%- include('shared/includes/head') %>
+</head>
+<body id="add-body">
+  <div id="add-container">
+    <h2>Add New User Profile</h2>
+    <form action="/add-user" method="POST" id="new-form" enctype="multipart/form-data">
+      
+      <label for="name">Full Name</label>
+      <input type="text" id="new-name" name="name" required>
+
+      <label for="username">Username</label>
+      <input type="text" id="new-username" name="username" required>
+
+      <label for="bio">Bio</label>
+      <textarea id="new-bio" name="bio" placeholder="Write a short bio..." rows="3" required></textarea>
+
+      <label for="image">Profile Image</label>
+      <input type="file" id="new-image" name="image" accept="image/*">
+
+      <button type="submit" id="add-btn" class="profile-btn">Add User</button>
+    </form>
+    <a href="/" id="back-btn" class="profile-btn">Back to Users</a>
+  </div>
+</body>

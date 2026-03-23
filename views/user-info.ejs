@@ -1,0 +1,30 @@
+<%- include('shared/includes/head') %>
+</head>
+<body id="info-body">
+  <div class="profile-card">
+    <img src="/<%= user.image %>" class="profile-img" />
+
+    <h2 class="profile-name"><%= user.name %></h2>
+    <p class="profile-username"><%= user.username %></p>
+
+    <p class="profile-bio"><%= user.bio %></p>
+
+    <!-- <div class="profile-info">
+      <div>
+        <h3>120</h3>
+        <p>Posts</p>
+      </div>
+      <div>
+        <h3>500</h3>
+        <p>Followers</p>
+      </div>
+      <div>
+        <h3>180</h3>
+        <p>Following</p>
+      </div>
+    </div> -->
+
+    <a href="/" class="profile-btn">Back</a>
+  </div>
+</body>
+</html>
